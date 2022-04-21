@@ -12,9 +12,7 @@ use windows::Win32::System::WindowsProgramming::INFINITE;
 // https://docs.microsoft.com/en-us/windows/win32/sync/synchronization-object-security-and-access-rights
 const TIMER_ALL_ACCESS: u32 = 0x1F0003;
 
-// https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject
-const WAIT_FAILED: u32 = 0xFFFFFFFF;
-
+// probably needs to be either thread local (I think Go stores it in the m-struct) or created/closed for each call (Python)
 lazy_static! {
     static ref WAITABLE_TIMER: HANDLE = {
         unsafe {
@@ -66,7 +64,7 @@ pub fn sleep(dur: Duration) {
         }
         // Rust: https://microsoft.github.io/windows-docs-rs/doc/windows/Win32/System/Threading/fn.WaitForSingleObject.html
         // Windows: https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject
-        if WAIT_FAILED == Threading::WaitForSingleObject(timer, INFINITE) {
+        if Threading::WaitForSingleObject(timer, INFINITE) != Threading::WAIT_OBJECT_0 {
             panic!("WaitForSingleObject failed");
         }
     }
