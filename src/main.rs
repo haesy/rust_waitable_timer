@@ -41,6 +41,7 @@ fn main() {
     test_thread_sleep(Duration::from_millis(1));
     test_thread_sleep(Duration::from_micros(500));
     test_thread_sleep(Duration::from_micros(250));
+    test_thread_sleep(Duration::ZERO);
     
     println!("=== windows_sleep ===");
     test_windows_sleep(Duration::from_millis(10));
@@ -49,6 +50,7 @@ fn main() {
     test_windows_sleep(Duration::from_millis(1));
     test_windows_sleep(Duration::from_micros(500));
     test_windows_sleep(Duration::from_micros(250));
+    test_windows_sleep(Duration::ZERO);
 
     unsafe { Multimedia::timeBeginPeriod(1); }
 
@@ -59,6 +61,7 @@ fn main() {
     test_thread_sleep(Duration::from_millis(1));
     test_thread_sleep(Duration::from_micros(500));
     test_thread_sleep(Duration::from_micros(250));
+    test_thread_sleep(Duration::ZERO);
 
     println!("=== windows_sleep after beginTimePeriod ===");
     test_windows_sleep(Duration::from_millis(10));
@@ -67,6 +70,7 @@ fn main() {
     test_windows_sleep(Duration::from_millis(1));
     test_windows_sleep(Duration::from_micros(500));
     test_windows_sleep(Duration::from_micros(250));
+    test_windows_sleep(Duration::ZERO);
 
     unsafe { Multimedia::timeEndPeriod(1); }
 }
