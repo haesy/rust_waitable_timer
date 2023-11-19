@@ -1,4 +1,8 @@
 # rust_waitable_timer
+
+> [!NOTE]
+> This code is no longer necessary and has been integrated in the standard library: [#116461](https://github.com/rust-lang/rust/commit/cee6db171d03c22f1cbf98a72dffde858a49fbd8)
+
 Quick and dirty test of CreateWaitableTimerExW Windows API in Rust.
 
 Implementation is in winsleep.rs and a simple test in main.rs.
